@@ -1,0 +1,9 @@
+server:
+  port: 8088
+
+spring:
+  mvc:
+    view:
+      #“/”表示resources/static/
+      prefix: /
+      suffix: .html
