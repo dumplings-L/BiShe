@@ -7,3 +7,7 @@ spring:
       #“/”表示resources/static/
       prefix: /
       suffix: .html
+  thymeleaf:
+    cache: false
+    #默认目录是resources/templates/
+    #prefix: classpath:/myPage/

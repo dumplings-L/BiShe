@@ -2,8 +2,16 @@ package personal.xjl.jerrymouse.controller;
 
 
 import org.springframework.stereotype.Controller;
+
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import personal.xjl.jerrymouse.entity.Product;
+
+import java.util.ArrayList;
+import java.util.List;
 
 //注解，定义该类是控制器
 @Controller
@@ -20,15 +28,24 @@ public class StudentController {
     }
     //add,转向到addStudent.html页面
     @RequestMapping("toAdd.do")
-    public String toAdd(){
+    public String toAdd(Model model){
+        List<Product> students=new ArrayList<>();
+        for (int i=1;i<=10;i++)
+        {
+            students.add(new Product("product"+i,i,i));
+        }
+        model.addAttribute("students",students);
+        //传出数据，名字username,值是apolo
+        model.addAttribute("username","apolo");
+        model.addAttribute("pwd","123");
         return "addStudent";
     }
     //update
     //delete
     //login
-    @RequestMapping("login.do")
+    @RequestMapping(value = "login.do",method = RequestMethod.POST)
     @ResponseBody
-    public String login(){
-        return "welcome you!";
+    public String login(String username,@RequestParam("pwd") String password){
+        return "welcome you!"+username+",your password is  "+password;
     }
 }
