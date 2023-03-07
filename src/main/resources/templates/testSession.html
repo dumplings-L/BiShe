@@ -7,13 +7,9 @@
     <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
 </head>
 <body>
-<form action="/Student/add.do" method="post">
-    Name:<input type="text" name="name"><br/>
-    Password:<input type="password" name="pwd"><br/>
-    Age:<input type="text" name="age"><br/>
-    <input type="submit" value="add student">
-</form>
-
+<div align="center"><h1>学生管理系统登录界面</h1></div>
+<p th:text="${student.name}"/>
+<div th:text="welcome+${session.username}"/>
 <script src="/bootstrap/dist/js/bootstrap.bundle.min.js"  crossorigin="anonymous"></script>
 </body>
 </html>
