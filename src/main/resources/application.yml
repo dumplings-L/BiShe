@@ -9,6 +9,8 @@ spring:
       suffix: .html
     pathmatch:
       matching-strategy: ant_path_matcher
+  messages:
+    basename: i18n/language
   thymeleaf:
     cache: false
     #默认目录是resources/templates/

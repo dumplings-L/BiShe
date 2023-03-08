@@ -7,13 +7,17 @@
     <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
 </head>
 <body>
-<form action="/Student/add.do" method="post">
-    <span th:text="#{username}"/><input type="text" name="name"><br/>
-    Password:<input type="password" name="pwd"><br/>
-    Age:<input type="text" name="age"><br/>
-    <input type="submit" value="add student">
-</form>
+<div align="center"><h1>teachers管理系统登录界面</h1></div>
 
+<table class="table table-striped">
+    <tr><td>id</td><td>name</td><td>course</td></tr>
+    <tr th:each="teacher:${session.teachers}">
+        <td th:text="${teacher.id}"></td>
+        <td th:text="${teacher.name}"></td>
+        <td th:text="${teacher.course}"></td>
+    </tr>
+</table>
+<div align="center"><a href="/Student/getPage.do?page=addTeacher">增加教师</a> </div>
 <script src="/bootstrap/dist/js/bootstrap.bundle.min.js"  crossorigin="anonymous"></script>
 </body>
 </html>

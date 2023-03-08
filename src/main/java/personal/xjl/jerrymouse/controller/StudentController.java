@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import personal.xjl.jerrymouse.entity.Product;
 import personal.xjl.jerrymouse.entity.Student;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
-//注解，定义该类是控制器
+//注解，定义该类是控制器，spring在扫描后会自动生成一个bean的对象，他的名字是studentController
 @Controller
 //如何访问控制器，像servlet的url_pattern
 @RequestMapping("/Student")
@@ -51,7 +53,16 @@ public class StudentController {
     //login
     @RequestMapping(value = "login.do",method = RequestMethod.POST)
     @ResponseBody
-    public String login(String username,@RequestParam("pwd") String password){
+    public String login(String username, @RequestParam("pwd") String password, String freeLogin, HttpServletResponse res){
+        //如果用户勾选了“七天免登录”，创建cookie
+        if (freeLogin!=null){
+            Cookie username_cookie=new Cookie("username",username);
+            username_cookie.setMaxAge(7*24*60*60);
+            Cookie pwd_cookie=new Cookie("pwd",password);
+            res.addCookie(username_cookie);
+            res.addCookie(pwd_cookie);
+        }
+
         return "welcome you!"+username+",your password is  "+password;
     }
     @RequestMapping("getPage.do")
@@ -60,6 +71,7 @@ public class StudentController {
     }
     @RequestMapping("add.do")
     public String add(Student student, Model model, HttpSession session){
+        System.out.println(session.getId());
         session.setAttribute("username",student.getName());
         return "testSession";
     }
