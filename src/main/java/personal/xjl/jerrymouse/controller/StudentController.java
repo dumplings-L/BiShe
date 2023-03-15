@@ -79,8 +79,9 @@ public class StudentController {
     }
     @RequestMapping("add.do")
     public String add(Student student, Model model, HttpSession session){
+        studentMapper.insert(student);
         System.out.println(session.getId());
         session.setAttribute("username",student.getName());
-        return "testSession";
+        return list(model);
     }
 }
