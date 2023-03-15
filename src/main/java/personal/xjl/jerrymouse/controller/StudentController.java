@@ -3,6 +3,7 @@ package personal.xjl.jerrymouse.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import personal.xjl.jerrymouse.entity.Product;
 import personal.xjl.jerrymouse.entity.Student;
+import personal.xjl.jerrymouse.mapper.StudentMapper;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -25,14 +27,20 @@ import java.util.List;
 @RequestMapping("/Student")
 @Api(value = "this is a  student api",tags = "students api")
 public class StudentController {
+    //自动注入
+    @Autowired
+    StudentMapper studentMapper;
     //select,list,分层的请求形式
     @RequestMapping("list.do")
     //响应给用户的是html中的body部分
-    @ResponseBody
+    //@ResponseBody
     @ApiOperation(value = "listStudents",notes = "list methods,显示学生",tags="list Students")
-    public String list(){
+    public String list(Model model){
+        //获取数据库里student表的所有数据
+        List<Student> students=studentMapper.queryAll();
+        model.addAttribute("students",students);
         //返回字符串list students给用户
-        return "list students";
+        return "listStudents";
     }
     //add,转向到addStudent.html页面
     @RequestMapping("toAdd.do")

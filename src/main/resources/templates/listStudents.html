@@ -13,11 +13,15 @@
 <span th:text="${pwd}"/>
 <div th:text="${students}"/>
 <table class="table table-striped">
-    <tr><td>name</td><td>price</td><td>count</td></tr>
-    <tr th:each="product:${students}">
-        <td th:text="${product.name}"></td>
-        <td th:text="${product.price}"></td>
-        <td th:text="${product.count}"></td>
+    <tr><td>id</td><td>name</td><td>password</td>
+        <td>sex</td><td>clazz</td><td>birthday</td></tr>
+    <tr th:each="student:${students}">
+        <td th:text="${student.id}"></td>
+        <td th:text="${student.name}"></td>
+        <td th:text="${student.password}"></td>
+        <td th:text="${student.sex}"></td>
+        <td th:text="${student.clazz}"></td>
+        <td th:text="${student.birthday}"></td>
     </tr>
 </table>
 <div th:text="welcome+${session.username}"/>
