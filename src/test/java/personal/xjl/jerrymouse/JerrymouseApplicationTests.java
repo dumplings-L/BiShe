@@ -13,6 +13,8 @@ class JerrymouseApplicationTests {
    //自动注入，装配
     @Autowired
     StudentMapper studentMapper;
+    @Autowired
+    Student zhangsan;
     @Test
     void contextLoads() {
         Student student=new Student();
@@ -23,6 +25,8 @@ class JerrymouseApplicationTests {
         studentMapper.insert(student);
         List<Student> students=studentMapper.queryAll();
         students.forEach(e-> System.out.println(e));
+        zhangsan.setName("zhangsan1");
+        System.out.println(zhangsan);
     }
 
 }

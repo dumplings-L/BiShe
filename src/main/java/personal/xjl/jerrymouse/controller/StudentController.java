@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import personal.xjl.jerrymouse.entity.Product;
 import personal.xjl.jerrymouse.entity.Student;
 import personal.xjl.jerrymouse.mapper.StudentMapper;
+import personal.xjl.jerrymouse.service.StudentServiceImpl;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -21,15 +22,15 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
-//注解，定义该类是控制器，spring在扫描后会自动生成一个bean的对象，他的名字是studentController
+//注解，定义该类是控制器，spring在扫描后会自动生成一个bean的对象，他的名字是"studentController"
 @Controller
 //如何访问控制器，像servlet的url_pattern
 @RequestMapping("/Student")
 @Api(value = "this is a  student api",tags = "students api")
 public class StudentController {
-    //自动注入
+    //自动注入,业务对象
     @Autowired
-    StudentMapper studentMapper;
+    StudentServiceImpl studentServiceImpl;
     //select,list,分层的请求形式
     @RequestMapping("list.do")
     //响应给用户的是html中的body部分
@@ -37,7 +38,7 @@ public class StudentController {
     @ApiOperation(value = "listStudents",notes = "list methods,显示学生",tags="list Students")
     public String list(Model model){
         //获取数据库里student表的所有数据
-        List<Student> students=studentMapper.queryAll();
+        List<Student> students=studentServiceImpl.findAllStudents();
         model.addAttribute("students",students);
         //返回字符串list students给用户
         return "listStudents";
@@ -79,7 +80,7 @@ public class StudentController {
     }
     @RequestMapping("add.do")
     public String add(Student student, Model model, HttpSession session){
-        studentMapper.insert(student);
+        studentServiceImpl.addStudent(student);
         System.out.println(session.getId());
         session.setAttribute("username",student.getName());
         return list(model);
