@@ -18,10 +18,10 @@
         <javaModelGenerator targetPackage="personal.xjl.jerrymouse.entity" targetProject="src/main/java"/>
         <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
         <javaClientGenerator targetPackage="personal.xjl.jerrymouse.mapper" targetProject="src/main/java"
-                             type="ANNOTATEDMAPPER"/>
+                             type="XMLMAPPER"/>
         <!-- ANNOTATEDMAPPER,XMLMAPPER -->
         <!-- sql 占位符，表示所有的表 -->
-        <table tableName="teacher" schema="test" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="score" schema="test" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
         </table>

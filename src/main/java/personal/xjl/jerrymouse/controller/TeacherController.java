@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import personal.xjl.jerrymouse.entity.Course;
 import personal.xjl.jerrymouse.entity.Teacher;
+import personal.xjl.jerrymouse.service.CourseServiceImpl;
 import personal.xjl.jerrymouse.service.TeacherServiceImpl;
 
 import javax.servlet.http.HttpSession;
@@ -46,4 +48,14 @@ public class TeacherController {
         teacherServiceImpl.addTeacher(teacher);
         return list(model);
     }
+    //toAdd.do,准备增加
+    @Autowired
+    CourseServiceImpl courseServiceImpl;
+    @RequestMapping("toAdd.do")
+    public String toAdd(Model model){
+        List<Course>  courses=courseServiceImpl.findAllCourses();
+        model.addAttribute("courses",courses);
+        return "addTeacher";
+    }
+
 }

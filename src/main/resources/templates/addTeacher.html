@@ -24,7 +24,11 @@
         </label>
     </div>
     birthday:<input type="text" name="birthday"><br/>
-    courseId:<input type="text" name="courseId"><br/>
+    courseId:
+    <select class="form-control" name="courseId">
+        <option th:each="course:${courses}" th:value="${course.id}" th:text="${course.name}"/>
+    </select>
+    <br/>
     professional:<input type="text" name="professional"><br/>
 
     <input type="submit" value="add teacher">

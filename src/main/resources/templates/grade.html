@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" xmlns:p="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
+</head>
+<body>
+<form action="/Score/grade.do" method="post">
+    Student:
+    <select class="form-control" name="studentId">
+        <option th:each="student:${students}" th:value="${student.id}" th:text="${student.name}"/>
+    </select>
+    <br/>
+    courseId:
+    <select class="form-control" name="courseId">
+        <option th:each="course:${courses}" th:value="${course.id}" th:text="${course.name}"/>
+    </select>
+    <br/>
+    grade:<input type="text" name="score"><br/>
+    <input type="submit" value="add teacher">
+</form>
+
+<script src="/bootstrap/dist/js/bootstrap.bundle.min.js"  crossorigin="anonymous"></script>
+</body>
+</html>

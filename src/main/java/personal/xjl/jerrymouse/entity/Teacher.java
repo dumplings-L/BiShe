@@ -224,4 +224,13 @@ public class Teacher {
     public void setProfessional(String professional) {
         this.professional = professional;
     }
+    private String cname;
+
+    public String getCname() {
+        return cname;
+    }
+
+    public void setCname(String cname) {
+        this.cname = cname;
+    }
 }
