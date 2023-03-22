@@ -10,7 +10,23 @@
 <form action="/Teacher/add.do" method="post">
     id:<input type="text" name="id"><br/>
     name:<input type="text" name="name"><br/>
-    course:<input type="text" name="course"><br/>
+    password:<input type="text" name="password"><br/>
+    sex:<div class="form-check">
+    <input class="form-check-input" type="radio" name="sex" id="flexRadioDefault1" th:value="1">
+    <label class="form-check-label" for="flexRadioDefault1">
+        男
+    </label>
+</div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="sex" id="flexRadioDefault2" checked th:value="0">
+        <label class="form-check-label" for="flexRadioDefault2">
+            女
+        </label>
+    </div>
+    birthday:<input type="text" name="birthday"><br/>
+    courseId:<input type="text" name="courseId"><br/>
+    professional:<input type="text" name="professional"><br/>
+
     <input type="submit" value="add teacher">
 </form>
 

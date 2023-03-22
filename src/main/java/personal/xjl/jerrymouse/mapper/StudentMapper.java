@@ -42,7 +42,7 @@ public interface StudentMapper {
      *
      * @mbggenerated
      */
-    @InsertProvider(type=StudentSqlProvider.class, method="insertSelective")
+   // @InsertProvider(type=StudentSqlProvider.class, method="insertSelective")
     int insertSelective(Student record);
 
     /**
@@ -73,7 +73,7 @@ public interface StudentMapper {
      *
      * @mbggenerated
      */
-    @UpdateProvider(type=StudentSqlProvider.class, method="updateByPrimaryKeySelective")
+  //  @UpdateProvider(type=StudentSqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(Student record);
 
     /**

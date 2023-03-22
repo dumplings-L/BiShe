@@ -10,11 +10,18 @@
 <div align="center"><h1>teachers管理系统登录界面</h1></div>
 
 <table class="table table-striped">
-    <tr><td>id</td><td>name</td><td>course</td></tr>
-    <tr th:each="teacher:${session.teachers}">
+    <tr><td>id</td><td>name</td><td>password</td>
+        <td>sex</td><td>birthday</td><td>courseId</td>
+        <td>professional</td></tr>
+    <tr th:each="teacher:${teachers}">
         <td th:text="${teacher.id}"></td>
         <td th:text="${teacher.name}"></td>
-        <td th:text="${teacher.course}"></td>
+        <td th:text="${teacher.password}"></td>
+        <td th:text="${teacher.sex==0?'女':'男'}"></td>
+        <td th:text="${teacher.birthday}"></td>
+        <td th:text="${teacher.courseId}"></td>
+        <td th:text="${teacher.professional}"></td>
+
     </tr>
 </table>
 <div align="center"><a href="/Student/getPage.do?page=addTeacher">增加教师</a> </div>
