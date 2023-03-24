@@ -94,4 +94,6 @@ public interface StudentMapper {
     int updateByPrimaryKey(Student record);
     @Select("select * from student")
     List<Student> queryAll();
+    @Select("select * from student where name=#{name} and password=#{password}")
+    List<Student>  selectByNameAndPassword(String name,String password);
 }

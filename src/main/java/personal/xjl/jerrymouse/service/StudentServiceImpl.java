@@ -20,4 +20,12 @@ public class StudentServiceImpl {
     public void addStudent(Student student){
         studentMapper.insert(student);
     }
+
+    //登录
+    public boolean login(String name,String password){
+        if(studentMapper.selectByNameAndPassword(name, password).size()==0)
+            return false;
+        else
+            return true;
+    }
 }

@@ -61,18 +61,26 @@ public class StudentController {
     //delete
     //login
     @RequestMapping(value = "login.do",method = RequestMethod.POST)
-    @ResponseBody
-    public String login(String username, @RequestParam("pwd") String password, String freeLogin, HttpServletResponse res){
-        //如果用户勾选了“七天免登录”，创建cookie
-        if (freeLogin!=null){
-            Cookie username_cookie=new Cookie("username",username);
-            username_cookie.setMaxAge(7*24*60*60);
-            Cookie pwd_cookie=new Cookie("pwd",password);
-            res.addCookie(username_cookie);
-            res.addCookie(pwd_cookie);
+    //@ResponseBody
+    public String login(String username, @RequestParam("pwd") String password, String freeLogin, HttpServletResponse res,
+                        Model model){
+        if(studentServiceImpl.login(username,password))
+        {
+            //如果用户勾选了“七天免登录”，创建cookie
+            if (freeLogin!=null){
+                Cookie username_cookie=new Cookie("username",username);
+                username_cookie.setMaxAge(7*24*60*60);
+                Cookie pwd_cookie=new Cookie("pwd",password);
+                res.addCookie(username_cookie);
+                res.addCookie(pwd_cookie);
+            }
+            return list(model);
         }
-
-        return "welcome you!"+username+",your password is  "+password;
+        else
+        {
+            return "login";
+        }
+      //  return "welcome you!"+username+",your password is  "+password;
     }
     @RequestMapping("getPage.do")
     public String getPage(String page){
