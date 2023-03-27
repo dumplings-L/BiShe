@@ -24,7 +24,7 @@
         <td th:text="${student.birthday}"></td>
     </tr>
 </table>
-<div th:text="welcome+${session.username}"/>
+<div align="center"><a href="#" class="list-group-item" onclick="loadPage('/Student/toAdd.do')">增加学生</a> </div>
 <script src="/bootstrap/dist/js/bootstrap.bundle.min.js"  crossorigin="anonymous"></script>
 </body>
 </html>
