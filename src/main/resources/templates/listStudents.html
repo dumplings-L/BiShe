@@ -14,7 +14,9 @@
 <div th:text="${students}"/>
 <table class="table table-striped">
     <tr><td>id</td><td>name</td><td>password</td>
-        <td>sex</td><td>clazz</td><td>birthday</td></tr>
+        <td>sex</td><td>clazz</td><td>birthday</td>
+        <td>operation</td>
+    </tr>
     <tr th:each="student:${students}">
         <td th:text="${student.id}"></td>
         <td th:text="${student.name}"></td>
@@ -22,6 +24,7 @@
         <td th:text="${student.sex==0?'女':'男'}"></td>
         <td th:text="${student.clazz}"></td>
         <td th:text="${student.birthday}"></td>
+        <td ><a th:href="@{/Student/delete.do(id=${student.id})}">删除</a> </td>
     </tr>
 </table>
 <div align="center"><a href="#" class="list-group-item" onclick="loadPage('/Student/toAdd.do')">增加学生</a> </div>

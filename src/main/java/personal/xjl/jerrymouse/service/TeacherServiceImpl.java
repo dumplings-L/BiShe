@@ -19,4 +19,12 @@ public class TeacherServiceImpl {
     public int addTeacher(Teacher teacher){
         return teacherMapper.insert(teacher);
     }
+    //login
+
+    public boolean login(String username,String password){
+        if(teacherMapper.selectByNameAndPassword(username,password).size()==0)
+            return false;
+        else
+            return true;
+    }
 }

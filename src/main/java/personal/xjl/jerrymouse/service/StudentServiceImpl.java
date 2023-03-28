@@ -28,4 +28,8 @@ public class StudentServiceImpl {
         else
             return true;
     }
+
+    public int removeStudent(int id) {
+        return  studentMapper.deleteByPrimaryKey(id);
+    }
 }

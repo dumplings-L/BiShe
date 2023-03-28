@@ -93,4 +93,11 @@ public class StudentController {
         session.setAttribute("username",student.getName());
         return list(model);
     }
+    //delete.do
+
+    @RequestMapping("delete.do")
+    public String delete(int id,Model model){
+        studentServiceImpl.removeStudent(id);
+        return "main";
+    }
 }

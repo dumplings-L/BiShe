@@ -1,6 +1,8 @@
 package personal.xjl.jerrymouse.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+import personal.xjl.jerrymouse.entity.Student;
 import personal.xjl.jerrymouse.entity.Teacher;
 
 import java.util.List;
@@ -54,4 +56,7 @@ public interface TeacherMapper {
      */
     int updateByPrimaryKey(Teacher record);
     List<Teacher> queryAll();
+
+    @Select("select * from teacher where name=#{name} and password=#{password}")
+    List<Teacher>  selectByNameAndPassword(String name, String password);
 }

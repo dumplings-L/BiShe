@@ -21,7 +21,7 @@
                              type="XMLMAPPER"/>
         <!-- ANNOTATEDMAPPER,XMLMAPPER -->
         <!-- sql 占位符，表示所有的表 -->
-        <table tableName="score" schema="test" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="admin" schema="test" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
         </table>
