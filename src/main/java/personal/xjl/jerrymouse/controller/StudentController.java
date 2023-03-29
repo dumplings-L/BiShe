@@ -100,4 +100,20 @@ public class StudentController {
         studentServiceImpl.removeStudent(id);
         return "main";
     }
+    //toUpdate,带原数据跳转到修改页面
+    @RequestMapping("toUpdate.do")
+    public String toUpdate(int id,Model model){
+        //查找到原数据
+        Student student=studentServiceImpl.selectStudentById(id);
+        //用student渲染updateStudent.html
+        model.addAttribute("student",student);
+        return "updateStudent";
+    }
+    //update,提交修改后的数据到数据库
+    @RequestMapping("update.do")
+    public String update(Student newStudent,Model model){
+        //提交修改数据
+        studentServiceImpl.updateStudent(newStudent);
+        return list(model);
+    }
 }

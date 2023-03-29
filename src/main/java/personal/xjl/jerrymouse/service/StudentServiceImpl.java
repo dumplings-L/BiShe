@@ -32,4 +32,12 @@ public class StudentServiceImpl {
     public int removeStudent(int id) {
         return  studentMapper.deleteByPrimaryKey(id);
     }
+
+    public Student selectStudentById(int id) {
+        return  studentMapper.selectByPrimaryKey(id);
+    }
+
+    public void updateStudent(Student newStudent) {
+        studentMapper.updateByPrimaryKey(newStudent);
+    }
 }

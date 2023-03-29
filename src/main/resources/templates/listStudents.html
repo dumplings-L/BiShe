@@ -24,7 +24,8 @@
         <td th:text="${student.sex==0?'女':'男'}"></td>
         <td th:text="${student.clazz}"></td>
         <td th:text="${student.birthday}"></td>
-        <td ><a th:href="@{/Student/delete.do(id=${student.id})}">删除</a> </td>
+        <td ><a th:href="@{/Student/delete.do(id=${student.id})}">删除</a>
+            <a th:href="@{/Student/toUpdate.do(id=${student.id})}">修改</a></td>
     </tr>
 </table>
 <div align="center"><a href="#" class="list-group-item" onclick="loadPage('/Student/toAdd.do')">增加学生</a> </div>
