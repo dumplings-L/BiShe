@@ -8,26 +8,74 @@
 </head>
 <body>
 <div align="center"><h1>学生管理系统登录界面</h1></div>
-<p th:text="${username}"/>
 
-<span th:text="${pwd}"/>
-<div th:text="${students}"/>
 <table class="table table-striped">
     <tr><td>id</td><td>name</td><td>password</td>
-        <td>sex</td><td>clazz</td><td>birthday</td>
-        <td>operation</td>
-    </tr>
-    <tr th:each="student:${students}">
+        <td>sex</td><td>clazz</td><td>birthday</td><td>课程名&nbsp;成绩</td>><td>operation</td><td>modify</td></tr>
+    <tr th:each="student:${pageInfo.list}">
         <td th:text="${student.id}"></td>
         <td th:text="${student.name}"></td>
         <td th:text="${student.password}"></td>
         <td th:text="${student.sex==0?'女':'男'}"></td>
         <td th:text="${student.clazz}"></td>
         <td th:text="${student.birthday}"></td>
-        <td ><a th:href="@{/Student/delete.do(id=${student.id})}">删除</a>
-            <a th:href="@{/Student/toUpdate.do(id=${student.id})}">修改</a></td>
+        <td>
+            <div th:each="studentScore:${student.scores}">
+                <span  th:text="${studentScore.course.name}"/>  &nbsp; <span  th:text="${studentScore.score}"/>
+            </div>
+        </td>
+        <td > <a th:href="@{/Student/delete.do(id=${student.id})}">删除</a></td>
+        <td > <a th:href="@{/Student/toUpdate.do(id=${student.id})}">修改</a></td>
     </tr>
+
 </table>
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end">
+        <li class="page-item ">
+            <a class="page-link" th:if="${not pageInfo.isFirstPage}" th:href="@{${'/Student/list.do'}(pageNum=${1},pageSize=${pageInfo.pageSize})}" >
+                首页
+            </a>
+            <a class="page-link" th:if="${pageInfo.isFirstPage}" href="javascript:void(0);">
+                首页
+            </a>
+        </li>
+        <li class="page-item ">
+
+            <a class="page-link" th:if="${not pageInfo.isFirstPage}" th:href="@{${'/Student/list.do'}(pageNum=${pageInfo.pageNum-1},pageSize=${pageInfo.pageSize})}" >
+                前页
+            </a>
+            <a class="page-link" th:if="${pageInfo.isFirstPage}" href="javascript:void(0);" >
+                前页
+            </a>
+        </li>
+        <li class="page-item " th:each="pageNo : ${pageInfo.navigatepageNums}">
+            <a class="page-link" th:if="${pageInfo.pageNum eq pageNo}" href="javascript:void(0);">
+                <span th:text="${pageNo}"></span>
+            </a>
+
+            <a class="page-link" th:if="${not (pageInfo.pageNum eq pageNo)}" th:href="@{${'/Student/list.do'}(pageNum=${pageNo},pageSize=${pageInfo.pageSize})}">
+                <span th:text="${pageNo}"></span>
+            </a>
+        </li>
+
+        <li class="page-item ">
+            <a class="page-link" th:if="${not pageInfo.isLastPage}" th:href="@{${'/Student/list.do'}(pageNum=${pageInfo.pageNum+1},pageSize=${pageInfo.pageSize})}" aria-label="Next">
+                下一页
+            </a>
+            <a class="page-link" th:if="${pageInfo.isLastPage}" href="javascript:void(0);" aria-label="Next">
+                下一页
+            </a>
+        </li>
+        <li class="page-item ">
+            <a class="page-link" th:if="${not pageInfo.isLastPage}" th:href="@{${'/Student/list.do'}(pageNum=${pageInfo.pages},pageSize=${pageInfo.pageSize})}" >
+                最后一页
+            </a>
+            <a class="page-link" th:if="${pageInfo.isLastPage}" href="javascript:void(0);" >
+                最后一页
+            </a>
+        </li>
+    </ul>
+</nav>
 <div align="center"><a href="#" class="list-group-item" onclick="loadPage('/Student/toAdd.do')">增加学生</a> </div>
 <script src="/bootstrap/dist/js/bootstrap.bundle.min.js"  crossorigin="anonymous"></script>
 </body>

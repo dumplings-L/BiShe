@@ -20,11 +20,22 @@ public class TeacherServiceImpl {
         return teacherMapper.insert(teacher);
     }
     //login
-
-    public boolean login(String username,String password){
-        if(teacherMapper.selectByNameAndPassword(username,password).size()==0)
+    public boolean login(String name,String password){
+        if (teacherMapper.selectByNameAndPassword(name,password).size()==0){
             return false;
-        else
+        }else
             return true;
+    }
+    //删除老师
+    public void removeStudent(int id) {
+        teacherMapper.deleteByPrimaryKey(id);
+    }
+
+    public Teacher selectUpdateTeacher(int id){
+        return teacherMapper.selectByPrimaryKey(id);
+    }
+
+    public int UpdateTeacher(Teacher newTeacher){
+        return teacherMapper.updateByPrimaryKey(newTeacher);
     }
 }

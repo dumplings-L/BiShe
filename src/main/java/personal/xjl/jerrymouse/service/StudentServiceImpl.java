@@ -29,15 +29,17 @@ public class StudentServiceImpl {
             return true;
     }
 
-    public int removeStudent(int id) {
-        return  studentMapper.deleteByPrimaryKey(id);
+    //删除学生
+    public void removeStudent(int id) {
+        studentMapper.deleteByPrimaryKey(id);
+    }
+    //修改学生
+
+    public Student selectStudentById(int id){
+        return studentMapper.selectByPrimaryKey(id);
+    }
+    public int UpdateStudent(Student newStudent){
+        return studentMapper.updateByPrimaryKey(newStudent);
     }
 
-    public Student selectStudentById(int id) {
-        return  studentMapper.selectByPrimaryKey(id);
-    }
-
-    public void updateStudent(Student newStudent) {
-        studentMapper.updateByPrimaryKey(newStudent);
-    }
 }

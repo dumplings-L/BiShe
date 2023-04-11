@@ -1,8 +1,12 @@
 package personal.xjl.jerrymouse.controller;
 
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.juli.logging.Log;
+import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -28,6 +32,7 @@ import java.util.List;
 @RequestMapping("/Student")
 @Api(value = "this is a  student api",tags = "students api")
 public class StudentController {
+    private final Log log= LogFactory.getLog(StudentController.class);
     //自动注入,业务对象
     @Autowired
     StudentServiceImpl studentServiceImpl;
@@ -36,10 +41,17 @@ public class StudentController {
     //响应给用户的是html中的body部分
     //@ResponseBody
     @ApiOperation(value = "listStudents",notes = "list methods,显示学生",tags="list Students")
-    public String list(Model model){
+    public String list(Model model,@RequestParam(defaultValue = "1")int pageNum,@RequestParam(defaultValue = "5") int pageSize){
+        log.info("this is my info log");
+//        log.warn("this is my warn log");
+        log.error("this is my error log");
+        PageHelper.startPage(pageNum,pageSize);
         //获取数据库里student表的所有数据
         List<Student> students=studentServiceImpl.findAllStudents();
-        model.addAttribute("students",students);
+
+        PageInfo pageInfo=new PageInfo<Student>(students,pageSize);
+        model.addAttribute("pageInfo", pageInfo);
+//        model.addAttribute("students",students);
         //返回字符串list students给用户
         return "listStudents";
     }
@@ -74,7 +86,7 @@ public class StudentController {
                 res.addCookie(username_cookie);
                 res.addCookie(pwd_cookie);
             }
-            return list(model);
+            return list(model,1,5);
         }
         else
         {
@@ -91,29 +103,37 @@ public class StudentController {
         studentServiceImpl.addStudent(student);
         System.out.println(session.getId());
         session.setAttribute("username",student.getName());
-        return list(model);
+        return list(model,1,5);
     }
-    //delete.do
-
+    //delete.do删除学生
     @RequestMapping("delete.do")
     public String delete(int id,Model model){
         studentServiceImpl.removeStudent(id);
-        return "main";
+        return list(model,1,5);
     }
-    //toUpdate,带原数据跳转到修改页面
+    //toUpdate.do,带原数据跳转到修改页面
     @RequestMapping("toUpdate.do")
-    public String toUpdate(int id,Model model){
-        //查找到原数据
-        Student student=studentServiceImpl.selectStudentById(id);
+    public String toUpdate(int id, Model model){
+        //查找原来数据
+        Student student = studentServiceImpl.selectStudentById(id);
         //用student渲染updateStudent.html
         model.addAttribute("student",student);
         return "updateStudent";
     }
-    //update,提交修改后的数据到数据库
+    //update.do,修改后的数据提交到数据库，跳转到页面
     @RequestMapping("update.do")
     public String update(Student newStudent,Model model){
-        //提交修改数据
-        studentServiceImpl.updateStudent(newStudent);
-        return list(model);
+        //提交原数据
+        studentServiceImpl.UpdateStudent(newStudent);
+        return list(model,1,5);
     }
+    //lofout.do
+    @RequestMapping("logout.do")
+    public String logout(HttpSession session){
+        //没收通行证
+        session.setAttribute("username",null);
+        return "login";
+    }
+
+
 }

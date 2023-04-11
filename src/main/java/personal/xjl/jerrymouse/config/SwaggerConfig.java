@@ -41,12 +41,14 @@ public class SwaggerConfig implements WebMvcConfigurer {
                 .version("1.0.0")
                 .build();
     }
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new MyLoginInterceptor()).addPathPatterns("/Student/*")
                 .addPathPatterns("/Teacher/*")
-                .addPathPatterns("/Course/*")
+                .addPathPatterns("/Score/*")
                 .addPathPatterns("/Admin/*")
                 .excludePathPatterns("/Login*");
     }
+
 }

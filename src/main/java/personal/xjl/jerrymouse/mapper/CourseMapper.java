@@ -1,9 +1,16 @@
 package personal.xjl.jerrymouse.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.type.JdbcType;
 import personal.xjl.jerrymouse.entity.Course;
+import personal.xjl.jerrymouse.entity.Score;
+import personal.xjl.jerrymouse.entity.Teacher;
 
 import java.util.List;
+
 @Mapper
 public interface CourseMapper {
     /**
@@ -53,5 +60,26 @@ public interface CourseMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(Course record);
+
     List<Course> queryAll();
+
+
+
+//    @Select({
+//            "select",
+//            "*",
+//            "from course",
+//            "where teacher_id = #{id,jdbcType=INTEGER}"
+//    })
+//    @Results({
+//            @Result(column="name", property="name", jdbcType= JdbcType.VARCHAR),
+//            @Result(column="teacher_id", property="teacherId", jdbcType=JdbcType.INTEGER),
+//
+//    })
+//    List<Course> selectByTeacherId(int id);
+
+
+    @Select("select * from course c,tbl_teacherCourse tc where c.id=tc.course_id and tc.teacher_id=#{teacherId}")
+
+    List<Course> selectTeacherByCourseId(int teacherId);
 }

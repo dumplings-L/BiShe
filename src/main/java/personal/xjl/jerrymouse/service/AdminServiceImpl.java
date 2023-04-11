@@ -9,9 +9,9 @@ public class AdminServiceImpl {
     @Autowired
     AdminMapper adminMapper;
     public boolean login(String name,String password){
-        if(adminMapper.selectByNameAndPassword(name, password).size()==0)
+        if (adminMapper.selectByNameAndPassword(name, password).size()==0){
             return false;
-        else
+        }else
             return true;
     }
 }

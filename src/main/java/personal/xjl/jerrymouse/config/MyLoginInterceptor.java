@@ -13,7 +13,7 @@ public class MyLoginInterceptor implements HandlerInterceptor {
         HttpSession session=request.getSession();
         String username= (String) session.getAttribute("username");
         if(username==null){
-            request.getRequestDispatcher("/login.html").forward(request,response);
+         //   request.getRequestDispatcher("/templeate/login.html").forward(request,response);
             return false;
         }
         else {
@@ -30,4 +30,3 @@ public class MyLoginInterceptor implements HandlerInterceptor {
 
     }
 }
-

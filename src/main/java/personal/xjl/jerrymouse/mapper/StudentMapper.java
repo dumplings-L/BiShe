@@ -93,7 +93,20 @@ public interface StudentMapper {
     })
     int updateByPrimaryKey(Student record);
     @Select("select * from student")
+    @Results({
+            @Result(column="Id", property="id", jdbcType=JdbcType.INTEGER, id=true),
+            @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
+            @Result(column="password", property="password", jdbcType=JdbcType.VARCHAR),
+            @Result(column="sex", property="sex", jdbcType=JdbcType.INTEGER),
+            @Result(column="clazz", property="clazz", jdbcType=JdbcType.VARCHAR),
+            @Result(column="birthday", property="birthday", jdbcType=JdbcType.VARCHAR),
+            @Result(column="id", property="scores", javaType=List.class,
+                    many = @Many(select = "personal.xjl.jerrymouse.mapper.ScoreMapper.selectByStudentId"))
+
+    })
     List<Student> queryAll();
     @Select("select * from student where name=#{name} and password=#{password}")
     List<Student>  selectByNameAndPassword(String name,String password);
+
+
 }

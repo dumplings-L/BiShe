@@ -1,8 +1,8 @@
 package personal.xjl.jerrymouse.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import personal.xjl.jerrymouse.entity.Student;
+import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.type.JdbcType;
+import personal.xjl.jerrymouse.entity.Course;
 import personal.xjl.jerrymouse.entity.Teacher;
 
 import java.util.List;
@@ -22,6 +22,14 @@ public interface TeacherMapper {
      *
      * @mbggenerated
      */
+    @Insert({
+            "insert into teacher (Id, name, ",
+            "password, sex, birthday, ",
+            "course_id, professional)",
+            "values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, ",
+            "#{password,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{birthday,jdbcType=VARCHAR}, ",
+            "#{courseId,jdbcType=INTEGER}, #{professional,jdbcType=VARCHAR})"
+    })
     int insert(Teacher record);
 
     /**
@@ -38,6 +46,21 @@ public interface TeacherMapper {
      *
      * @mbggenerated
      */
+    @Select({
+            "select",
+            "Id, name, password, sex, birthday ,course_id , professional",
+            "from teacher",
+            "where Id = #{id,jdbcType=INTEGER}"
+    })
+    @Results({
+            @Result(column="Id", property="id", jdbcType=JdbcType.INTEGER, id=true),
+            @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
+            @Result(column="password", property="password", jdbcType=JdbcType.VARCHAR),
+            @Result(column="sex", property="sex", jdbcType=JdbcType.INTEGER),
+            @Result(column="birthday", property="birthday", jdbcType=JdbcType.VARCHAR),
+            @Result(column="course_id", property="courseId", jdbcType=JdbcType.INTEGER),
+            @Result(column="professional", property="professional", jdbcType=JdbcType.VARCHAR)
+    })
     Teacher selectByPrimaryKey(Integer id);
 
     /**
@@ -54,8 +77,35 @@ public interface TeacherMapper {
      *
      * @mbggenerated
      */
+    @Update({
+            "update teacher",
+            "set name = #{name,jdbcType=VARCHAR},",
+            "password = #{password,jdbcType=VARCHAR},",
+            "sex = #{sex,jdbcType=INTEGER},",
+            "birthday = #{birthday,jdbcType=VARCHAR},",
+            "course_id = #{courseId,jdbcType=INTEGER},",
+            "professional = #{professional,jdbcType=VARCHAR}",
+            "where Id = #{id,jdbcType=INTEGER}"
+    })
     int updateByPrimaryKey(Teacher record);
+//    @Select("select t.*,c.name as cname  from teacher t ,course c where t.course_id=c.id")
+//    @Select("select * from teacher")
+//    @Results({
+//
+//            @Result(column="course_id", property="course", javaType= Course.class,
+//                    one = @One(select = "personal.xjl.jerrymouse.mapper.CourseMapper.selectTeacherByCourseId"))
+//
+//    })
+//    List<Teacher> queryAll();
+    @Select("select * from teacher")
+    @Results({
+            @Result(column = "id",property = "courses",javaType = List.class,
+                    many = @Many(select = "personal.xjl.jerrymouse.mapper.CourseMapper.selectTeacherByCourseId"))
+    })
     List<Teacher> queryAll();
+
+    @Select("select * from teacher t,tbl_teacherCourse tc where t.id=tc.teacher_id and tc.course_id=#{courseId}")
+    List<Course> selectByCourseId(int course_id);
 
     @Select("select * from teacher where name=#{name} and password=#{password}")
     List<Teacher>  selectByNameAndPassword(String name, String password);
