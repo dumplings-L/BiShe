@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd" >
+<bean id="myBaoMa" class="personal.xjl.jerrymouse.spring.Car">
+    <property name="brand" value="BMW"/>
+    <property name="type" value="X3"/>
+    <property name="maxSpeed" value="300"/>
+
+</bean>
+<bean id="myBYD" class="personal.xjl.jerrymouse.spring.Car">
+    <property name="brand" value="BYD"/>
+    <property name="type" value="Tang"/>
+    <property name="maxSpeed" value="320"/>
+</bean>
+    <bean id="myNissan" class="personal.xjl.jerrymouse.spring.Car">
+        <constructor-arg name="brand" value="Missan"/>
+        <constructor-arg name="type" value="xunayi"/>
+        <constructor-arg name="maxSpeed" value="188"/>
+    </bean>
+
+</beans>
