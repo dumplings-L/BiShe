@@ -13,9 +13,38 @@
     <property name="maxSpeed" value="320"/>
 </bean>
     <bean id="myNissan" class="personal.xjl.jerrymouse.spring.Car">
-        <constructor-arg name="brand" value="Missan"/>
+        <constructor-arg name="brand" value="Nissan"/>
         <constructor-arg name="type" value="xunayi"/>
         <constructor-arg name="maxSpeed" value="188"/>
     </bean>
+<bean id="lisi" class="personal.xjl.jerrymouse.spring.Human">
+    <property name="name" value="lisi"/>
+    <property name="cars" >
+        <list>
+            <ref bean="myNissan"></ref>
+            <ref bean="myBaoMa"></ref>
+            <ref bean="myBYD"></ref>
+<!--            <ref bean="myBenz"></ref>-->
+        </list>
+    </property>
+    <property name="relatives">
+        <map>
+            <entry><key><value>1</value></key><ref bean="wangwu"></ref></entry>
+            <entry><key><value>2</value></key><ref bean="xioaliu"></ref></entry>
+<!--            <entry><key><value>1</value></key><value>mother</value></entry>-->
+<!--            <entry><key><value>2</value></key><value>father</value></entry>-->
+        </map>
+    </property>
 
+</bean>
+    <bean id="wangwu" class="personal.xjl.jerrymouse.spring.Human">
+        <property name="name" value="wangwu"/>
+<!--        <property name="cars" ref=""/>-->
+
+    </bean>
+    <bean id="xioaliu" class="personal.xjl.jerrymouse.spring.Human">
+        <property name="name" value="xioaliu"/>
+        <!--        <property name="cars" ref=""/>-->
+
+    </bean>
 </beans>
