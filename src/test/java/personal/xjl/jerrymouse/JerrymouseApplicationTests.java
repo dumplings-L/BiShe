@@ -8,9 +8,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import personal.xjl.jerrymouse.entity.Student;
 import personal.xjl.jerrymouse.mapper.StudentMapper;
-import personal.xjl.jerrymouse.spring.Car;
-import personal.xjl.jerrymouse.spring.Human;
-import personal.xjl.jerrymouse.spring.MyMath;
+import personal.xjl.jerrymouse.spring.*;
 
 import java.util.List;
 
@@ -21,12 +19,20 @@ class JerrymouseApplicationTests {
 //    StudentMapper studentMapper;
 //    @Autowired
 //    Student zhangsan;
-    @Autowired
-    @Qualifier("myBenz")//按名称注入对象
-    Car myCar;
+//    @Autowired
+//    @Qualifier("myBenz")//按名称注入对象
+//    Car myCar;
 //    @Autowired
 //    @Qualifier("zhangsan")
 //    Human human;
+
+
+    @Autowired
+    @Qualifier("myCattle")
+    Cattle myCattle;
+    @Autowired
+    @Qualifier("myCattleCar")
+    CattleCar myCattleCar;
     @Test
     void contextLoads() {
 //        Student student=new Student();
@@ -40,8 +46,13 @@ class JerrymouseApplicationTests {
 //        zhangsan.setName("zhangsan1");
 //        System.out.println(zhangsan);
 
-
-
+        System.out.println(myCattle);
+        ApplicationContext applicationContext=new ClassPathXmlApplicationContext("beans.xml");
+        Cattle niu1=(Cattle) applicationContext.getBean("niuMoWang");
+        System.out.println(niu1);
+        System.out.println(myCattleCar);
+        CattleCar niu2=(CattleCar) applicationContext.getBean("niuMoWang2");
+        System.out.println(niu2);
 
 
 //        System.out.println(myCar);
@@ -61,12 +72,28 @@ class JerrymouseApplicationTests {
 
 
 
-        ApplicationContext applicationContext=new ClassPathXmlApplicationContext("aop.xml");
-        MyMath myMath= applicationContext.getBean("math",MyMath.class);
-        myMath.setN1(1);
-        myMath.setN2(2);
-        myMath.add();
-        myMath.print();
+//        ApplicationContext applicationContext=new ClassPathXmlApplicationContext("aop.xml");
+//        MyMath myMath=(MyMath) applicationContext.getBean("m1");
+//        myMath.setN1(3);
+//        myMath.setN2(5);
+//        myMath.add();
+//        myMath.subtrace();
+//        myMath.mul();
+//        myMath.dev();
+//        myMath.print();
+//
+
+
+//        MyMath t2=(MyMath) applicationContext.getBean("target2");
+//        t2.add();
+//        t2.getN1();
+//        t2.mul();
+//        t2.dev();
+
+
+
+
+
     }
 
 }

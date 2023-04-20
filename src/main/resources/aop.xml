@@ -1,11 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="target" class="personal.xjl.jerrymouse.spring.MyMath"/>
-    <bean id="advice" class="personal.xjl.jerrymouse.spring.MyAdvice"/>
-    <bean id="math" class="org.springframework.aop.framework.ProxyFactoryBean"
-          p:target-ref="target" p:interceptorNames="advice"/>
-
+<!--    <bean id="target" class="personal.xjl.jerrymouse.spring.MyMath"/>-->
+<!--    <bean id="target2" class="personal.xjl.jerrymouse.spring.MyMath">-->
+<!--        <property name="n1" value="10"/>-->
+<!--        <property name="n2" value="20"/>-->
+<!--    </bean>-->
+<!--    <bean id="advice" class="personal.xjl.jerrymouse.spring.MyAnotherAdvice"/>-->
+<!--&lt;!&ndash;    <bean id="math" class="org.springframework.aop.framework.ProxyFactoryBean"&ndash;&gt;-->
+<!--&lt;!&ndash;          p:target-ref="target" p:interceptorNames="advice"/>&ndash;&gt;-->
+<!--    <aop:config proxy-target-class="true">-->
+<!--        <aop:pointcut id="p1" expression="execution(* personal.xjl.jerrymouse.spring.MyMath.add(..))"/>-->
+<!--        <aop:pointcut id="p2" expression="execution(* personal.xjl.jerrymouse.spring.MyMath.subtrace(..))"/>-->
+<!--        <aop:pointcut id="p3" expression="execution(* personal.xjl.jerrymouse.spring.MyMath.mul(..))"/>-->
+<!--        <aop:pointcut id="p4" expression="execution(* personal.xjl.jerrymouse.spring.MyMath.dev(..))"/>-->
+<!--        <aop:aspect ref="advice">-->
+<!--            <aop:before method="before" pointcut-ref="p1"/>-->
+<!--            <aop:after method="afterReturning" pointcut-ref="p2"/>-->
+<!--            <aop:around method="invoke" pointcut-ref="p3"/>-->
+<!--            <aop:after method="piyixia" pointcut-ref="p4"/>-->
+<!--        </aop:aspect>-->
+<!--    </aop:config>-->
+<context:component-scan base-package="personal.xjl.jerrymouse.spring"/>
+    <aop:aspectj-autoproxy/>
 </beans>

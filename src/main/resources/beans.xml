@@ -47,4 +47,13 @@
         <!--        <property name="cars" ref=""/>-->
 
     </bean>
+
+    <bean id="niuMoWang" class="personal.xjl.jerrymouse.spring.Cattle">
+        <property name="name" value="daNiu"/>
+        <property name="weight" value="300"/>
+    </bean>
+    <bean id="niuMoWang2" class="personal.xjl.jerrymouse.spring.CattleCar">
+        <property name="cattle" value="xiaoNiu"/>
+        <property name="wheelNum" value="5"/>
+    </bean>
 </beans>
