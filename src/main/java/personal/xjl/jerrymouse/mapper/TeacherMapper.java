@@ -14,6 +14,7 @@ public interface TeacherMapper {
      *
      * @mbggenerated
      */
+    @Delete("DELETE FROM teacher WHERE Id = #{id,jdbcType=INTEGER}")
     int deleteByPrimaryKey(Integer id);
 
     /**
@@ -99,6 +100,8 @@ public interface TeacherMapper {
 //    List<Teacher> queryAll();
     @Select("select * from teacher")
     @Results({
+            @Result(column="Id", property="id", jdbcType=JdbcType.INTEGER, id=true),
+
             @Result(column = "id",property = "courses",javaType = List.class,
                     many = @Many(select = "personal.xjl.jerrymouse.mapper.CourseMapper.selectTeacherByCourseId"))
     })

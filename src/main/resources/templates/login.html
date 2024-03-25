@@ -1,36 +1,83 @@
-<!doctype html>
+<!--<!doctype html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="utf-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+<!--    <title>Bootstrap demo</title>-->
+<!--    <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">-->
+<!--</head>-->
+<!--<body>-->
+<!--<div align="center"><h1>学生管理系统登录界面</h1></div>-->
+<!--<form action="/login.do" method="post">-->
+<!--    <div class="mb-3">-->
+<!--        <label for="exampleInputEmail1" class="form-label">Email address</label>-->
+<!--        <input type="text" class="form-control" name="name" id="exampleInputEmail1" aria-describedby="emailHelp">-->
+<!--        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
+<!--    </div>-->
+<!--    <div class="mb-3">-->
+<!--        <label for="exampleInputPassword1" class="form-label">Password</label>-->
+<!--        <input type="password" name="password" class="form-control" id="exampleInputPassword1">-->
+<!--    </div>-->
+<!--    <div class="mb-3">-->
+<!--        <label for="exampleInputPassword1" class="form-label">选择身份</label>-->
+<!--        <select name="type" id="type">-->
+<!--            <option value="1" selected>学生</option>-->
+<!--            <option value="2">教师</option>-->
+<!--            <option value="3">管理员</option>-->
+<!--        </select>-->
+<!--    </div>-->
+<!--    <div class="mb-3 form-check">-->
+<!--        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="freeLogin">-->
+<!--        <label class="form-check-label" for="exampleCheck1">7天内免登录</label>-->
+<!--    </div>-->
+<!--    <button type="submit" class="btn btn-primary">Submit</button>-->
+<!--</form>-->
+<!--<script src="/bootstrap/dist/js/bootstrap.bundle.min.js"  crossorigin="anonymous"></script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生管理系统登录界面</title>
+    <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<div align="center"><h1>学生管理系统登录界面</h1></div>
-<form action="/login.do" method="post">
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Email address</label>
-        <input type="text" class="form-control" name="name" id="exampleInputEmail1" aria-describedby="emailHelp">
-        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1 class="text-center">图书借阅管理系统登录界面</h1>
+            <form action="/login.do" method="post">
+                <div class="mb-3">
+                    <label for="username" class="form-label">用户名</label>
+                    <input type="text" class="form-control" name="name" id="username">
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">密码</label>
+                    <input type="password" name="password" class="form-control" id="password">
+                </div>
+                <div class="mb-3">
+                    <label for="type" class="form-label">选择身份</label>
+                    <select name="type" id="type">
+                        <option value="1" selected>学生</option>
+                        <option value="2">教师</option>
+                        <option value="3">管理员</option>
+                    </select>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="freeLogin" name="freeLogin">
+                    <label class="form-check-label" for="freeLogin">7天内免登录</label>
+                </div>
+                <button type="submit" class="btn btn-primary">登录</button>
+            </form>
+        </div>
     </div>
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input type="password" name="password" class="form-control" id="exampleInputPassword1">
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">选择身份</label>
-        <select name="type" id="type">
-            <option value="1" selected>学生</option>
-            <option value="2">教师</option>
-            <option value="3">管理员</option>
-        </select>
-    <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1" name="freeLogin">
-        <label class="form-check-label" for="exampleCheck1">7天内免登录</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-<script src="/bootstrap/dist/js/bootstrap.bundle.min.js"  crossorigin="anonymous"></script>
+</div>
+
+<script src="/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
